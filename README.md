@@ -8,7 +8,14 @@ Kho lưu trữ tài liệu, kiến thức và dự án thực hành trên lộ t
 
 Bảng tổng hợp toàn bộ các đường dẫn tài liệu học tập Markdown trong kho lưu trữ:
 
-### 1. Chuyên đề RAG (Retrieval-Augmented Generation)
+### 1. Nền tảng AI & Large Language Models
+| Tài liệu | Đường dẫn (.md) | Nội dung |
+| :--- | :--- | :--- |
+| **Foundation AI & LLM (Toàn diện)** | [Foundation ai and llm.md](Foundation%20AI%20&%20LLM/Foundation%20ai%20and%20llm.md) | Cẩm nang kiến trúc hệ thống AI 13 bước: Problem Discovery, Rule vs AI, Automation vs Augmentation, Reward Design, Precision & Recall, 3 Cấp độ kiến trúc (Workflow vs Agent), Tokenization & Attention, Pre-training & RLHF, ReAct & Function Calling, Hybrid Routing & Retrieval, Citation, RAG Triad, Probabilistic Design, Fallback/HITL, Observability, Golden Dataset, LLM-as-a-Judge. |
+
+---
+
+### 2. Chuyên đề RAG (Retrieval-Augmented Generation)
 | Tài liệu | Đường dẫn (.md) | Nội dung |
 | :--- | :--- | :--- |
 | **Tổng quan RAG** | [rag-learning/README.md](rag-learning/README.md) | Giới thiệu RAG, kiến trúc 2 luồng và cấu trúc dự án. |
@@ -21,7 +28,7 @@ Bảng tổng hợp toàn bộ các đường dẫn tài liệu học tập Mark
 
 ---
 
-### 2. Chuyên đề Semantic Search (Tìm kiếm ngữ nghĩa)
+### 3. Chuyên đề Semantic Search (Tìm kiếm ngữ nghĩa)
 | Tài liệu | Đường dẫn (.md) | Nội dung |
 | :--- | :--- | :--- |
 | **Tổng quan Semantic Search** | [senatic-search/README.md](senatic-search/README.md) | Giới thiệu dự án Semantic Search và cách vận hành. |
@@ -44,6 +51,8 @@ Bảng tổng hợp toàn bộ các đường dẫn tài liệu học tập Mark
 
 ```
 Learn-AI-engineer-with-me/
+├── Foundation AI & LLM/  # Kiến thức nền tảng AI, Deep Learning & LLMs
+│   └── README.md         # Giáo trình nền tảng AI & LLM
 ├── rag-learning/         # Chuyên đề RAG từ lý thuyết đến triển khai
 │   ├── docs/             # Giáo trình chi tiết (ALL_RAG.md)
 │   ├── src/              # Mã nguồn pipeline RAG
