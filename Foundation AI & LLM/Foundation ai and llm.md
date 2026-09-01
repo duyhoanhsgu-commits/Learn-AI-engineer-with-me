@@ -148,7 +148,7 @@ $$\text{Input: Short Answer} \longrightarrow \text{LLM Evaluation} \longrightarr
 Áp dụng cho các tác vụ phức tạp, giàu ngữ nghĩa, mang tính chủ quan hoặc có tác động lớn:
 - **Long Essay Evaluation:**
 
-$$\text{Input: Long Essay} \longrightarrow \text{AI phân tích luận điểm} \longrightarrow \text{Gợi ý điểm \& Feedback} \longrightarrow \text{Tutor đánh giá lại} \longrightarrow \text{Quyết định cuối cùng}$$
+$$\text{Input: Long Essay} \longrightarrow \text{AI phân tích luận điểm} \longrightarrow \text{Gợi ý điểm và Feedback} \longrightarrow \text{Tutor đánh giá lại} \longrightarrow \text{Quyết định cuối cùng}$$
 
 ---
 
@@ -183,7 +183,7 @@ Một hệ thống AI không chỉ cần hoạt động được mà kỹ sư c�
 
 Trong một hệ thống phức tạp (ví dụ: AI Tutor), hàm mục tiêu phải cân bằng giữa các yếu tố giá trị gia tăng $(+)$ và các hình phạt / rủi ro $(-)$:
 
-$$\text{Reward} = \underbrace{\Big( \text{Correctness} + \text{Groundedness} + \text{Learning Improvement} + \text{User Satisfaction} \Big)}_{\text{Giá trị mong muốn (+) }} - \underbrace{\Big( \text{Hallucination} + \text{Unsafe Response} \Big)}_{\text{Rủi ro \& Hình phạt (-)}}$$
+$$\text{Reward} = \underbrace{\Big( \text{Correctness} + \text{Groundedness} + \text{Learning Improvement} + \text{User Satisfaction} \Big)}_{\text{Giá trị mong muốn (+) }} - \underbrace{\Big( \text{Hallucination} + \text{Unsafe Response} \Big)}_{\text{Rủi ro và Hình phạt (-)}}$$
 
 ### Chi tiết các thành phần:
 - **Answer Correctness (+):** Tính chính xác về mặt kiến thức, khái niệm và giải thuật.
@@ -334,7 +334,7 @@ $$\text{Upload PDF} \longrightarrow \text{Parse text} \longrightarrow \text{Extr
 
 ### c. Cấp 3: Agent (Hệ thống Tự chủ / Vòng lặp Suy luận)
 - **Luồng xử lý (ReAct Loop):**
-$$\text{Goal} \longrightarrow \text{Reason} \longrightarrow \text{Choose Tool} \longrightarrow \text{Execute \& Observe} \longrightarrow \text{Reason tiếp} \longrightarrow \text{Choose Next Action}$$
+$$\text{Goal} \longrightarrow \text{Reason} \longrightarrow \text{Choose Tool} \longrightarrow \text{Execute and Observe} \longrightarrow \text{Reason tiếp} \longrightarrow \text{Choose Next Action}$$
 - **Đặc điểm:** Áp dụng khi đường đi và số lượng bước thực thi không thể xác định trước tại thời điểm viết code.
 - **Cơ chế:** Mô hình AI (LLM) được trao quyền tự quan sát kết quả trả về của môi trường/công cụ để quyết định hành động tiếp theo cho đến khi đạt được mục tiêu (*Goal*).
 
@@ -932,7 +932,7 @@ $$\text{Chất lượng đánh giá} = \text{Automated Metrics (ROUGE, BLEU, Exa
 
 Trong kỹ thuật AI, quy trình triển khai không bao giờ kết thúc ở bước đóng gói và phát hành (*Build $\rightarrow$ Deploy $\rightarrow$ Done*). Hệ thống thực tế vận hành theo một chu trình khép kín:
 
-$$\text{Production} \longrightarrow \text{Observability / Logs} \longrightarrow \text{User Feedback \& Errors} \longrightarrow \text{Update Golden Dataset} \longrightarrow \text{Improve System} \longrightarrow \text{Re-deploy}$$
+$$\text{Production} \longrightarrow \text{Observability / Logs} \longrightarrow \text{User Feedback and Errors} \longrightarrow \text{Update Golden Dataset} \longrightarrow \text{Improve System} \longrightarrow \text{Re-deploy}$$
 
 ---
 
