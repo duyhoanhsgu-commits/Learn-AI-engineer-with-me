@@ -1,0 +1,8 @@
+python-dotenv
+openai
+pydantic
+numpy
+tiktoken
+sentence-transformers
+scikit-learn
+beautifulsoup4
