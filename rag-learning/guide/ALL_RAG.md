@@ -82,6 +82,10 @@ $$\text{Cosine Similarity}(\vec{A}, \vec{B}) = \cos(\theta) = \frac{\vec{A} \cdo
 - **Gần $0$ (Góc $\theta \to 90^\circ$):** Hai vector trực giao $\rightarrow$ Không có mối liên hệ ngữ nghĩa.
 - **Gần $-1$ (Góc $\theta \to 180^\circ$):** Hai vector ngược hướng $\rightarrow$ Mang ý nghĩa trái ngược nhau hoặc hoàn toàn không liên quan.
 
+> [!TIP]
+> **Mã nguồn thực hành:** Xem code thí nghiệm tính toán Cosine Similarity và so sánh vector giữa 2 từ (như *"ô tô"* ⟷ *"xe hơi"*, *"king"* ⟷ *"queen"*) tại [`compare_vectors.py`](../compare_vectors.py).  
+> *(Lưu ý: Cần chọn mô hình embedding đa ngôn ngữ như `paraphrase-multilingual-MiniLM-L12-v2` để xử lý chuẩn xác từ vựng Tiếng Việt).*
+
 ---
 
 ### 2.HISTORICAL SHIFT – SỰ CHUYỂN DỊCH LỊCH SỬ TỪ TÌM KIẾM THEO CHỮ SANG THEO Ý NGHĨA
@@ -290,6 +294,18 @@ Mục tiêu chính: Chuyển đổi các tài liệu đa định dạng thô th�
     - Chú thích trang, số trang (`Page numbers`).
     - Tách bạch và định danh được hình ảnh, sơ đồ (`Images`, `Figures`).
 
+> [!TIP]
+> **Mã nguồn thực hành:**
+> - Module Parser đa định dạng (HTML, Markdown, TXT, JSON): [`src/ingestion/parser.py`](../src/ingestion/parser.py).
+> - File chạy thực nghiệm: [`experiments/01_parse_test.py`](../experiments/01_parse_test.py).
+>
+> **Cách chạy kiểm thử nhanh:**
+> ```bash
+> python3 rag-learning/src/ingestion/parser.py
+> # hoặc chạy thực nghiệm:
+> python3 rag-learning/experiments/01_parse_test.py
+> ```
+
 ---
 
 #### b. OCR for Scanned Documents (OCR cho tài liệu quét)
@@ -403,6 +419,20 @@ Trong kiến trúc RAG, sai sót từ bước đầu tiên sẽ kéo theo sự s
 | **Duy trì cấu trúc tài liệu** | Kém | Kém | Xuất sắc |
 | **Trường hợp sử dụng phù hợp** | Dữ liệu văn bản tự do, baseline ban đầu | Tài liệu chuyển đổi ý linh hoạt, nghiên cứu sâu | Sách giáo khoa, hợp đồng, tài liệu kỹ thuật, chính sách |
 
+> [!TIP]
+> **Mã nguồn thực hành:**
+> - Module triển khai cả 3 chiến lược: [`src/ingestion/chunker.py`](../src/ingestion/chunker.py).
+> - File thực nghiệm so sánh trực quan: [`experiments/02_chunk_test.py`](../experiments/02_chunk_test.py).
+>
+> **Cách chạy kiểm thử:**
+> ```bash
+> python3 rag-learning/src/ingestion/chunker.py
+> # hoặc chạy thực nghiệm so sánh:
+> python3 rag-learning/experiments/02_chunk_test.py
+> ```
+
+---
+
 ### 4. METADATA ENRICHMENT (LÀM GIÀU DỮ LIỆU METADATA)
 #### a. Bản chất của Metadata Enrichment
 Trong các hệ thống RAG thực tế, một chunk không bao giờ nên chỉ là một chuỗi văn bản thô (*plain text*).
@@ -427,7 +457,18 @@ Thay vì chỉ lưu trữ nội dung text, một chunk hoàn chỉnh sẽ đi k�
   }
 }
 ```
+
+> [!TIP]
+> **Mã nguồn thực hành:**
+> - Module làm giàu Metadata & Context Injection: [`src/ingestion/metadata.py`](../src/ingestion/metadata.py).
+>
+> **Cách chạy thử nghiệm:**
+> ```bash
+> python3 rag-learning/src/ingestion/metadata.py
+> ```
+
 ---
+
 #### c. 6 Vai trò cốt lõi của Metadata trong RAG
 ```text
                        CÁC ỨNG DỤNG CỦA METADATA
@@ -513,6 +554,18 @@ Mỗi bản ghi được lưu trữ dưới dạng một Document Object / JSON 
 - **`vector`:** Tọa độ biểu diễn ngữ nghĩa trong không gian đa chiều, phục vụ cho thuật toán tìm kiếm tương đồng (ANN / HNSW / IVF).
 - **`text`:** Đoạn văn bản gốc để LLM đọc và tổng hợp câu trả lời khi được tìm thấy.
 - **`metadata`:** Dữ liệu ngữ cảnh phục vụ việc lọc (*filtering*), kiểm soát quyền (*access control*), và trích dẫn (*citation*).
+
+> [!TIP]
+> **Mã nguồn thực hành:**
+> - Module Vector Indexing & Semantic Search: [`src/vectorstore/vector_store.py`](../src/vectorstore/vector_store.py).
+> - File thực nghiệm tìm kiếm vector: [`experiments/04_vector_search_test.py`](../experiments/04_vector_search_test.py).
+>
+> **Cách chạy kiểm thử:**
+> ```bash
+> python3 rag-learning/src/vectorstore/vector_store.py
+> # hoặc chạy thực nghiệm:
+> python3 rag-learning/experiments/04_vector_search_test.py
+> ```
 
 ---
 
@@ -647,6 +700,18 @@ Một câu hỏi có thể được diễn đạt dưới nhiều góc độ và
 | **Query Rewriting** | Câu hỏi thô + Lịch sử hội thoại | 1 câu truy vấn độc lập (*Standalone Query*) | Giải quyết câu hỏi thiếu ngữ cảnh, chứa đại từ thay thế trong Chatbot |
 | **Multi-query Generation** | 1 câu hỏi của người dùng | Nhiều biến thể câu hỏi (*Multiple Sub-queries*) | Mở rộng góc độ tìm kiếm để tối đa hóa Recall |
 
+> [!TIP]
+> **Mã nguồn thực hành:**
+> - Module tiền truy xuất (Query Rewriting, Multi-query, Synonym Expansion): [`src/retrieval/pre_retrieval.py`](../src/retrieval/pre_retrieval.py).
+> - File thực nghiệm tiền truy xuất kết hợp tìm kiếm: [`experiments/05_retrieval_test.py`](../experiments/05_retrieval_test.py).
+>
+> **Cách chạy kiểm thử:**
+> ```bash
+> python3 rag-learning/src/retrieval/pre_retrieval.py
+> # hoặc chạy thực nghiệm:
+> python3 rag-learning/experiments/05_retrieval_test.py
+> ```
+
 ---
 
 ### 3. SEARCH METHODS & RANK FUSION (PHƯƠNG PHÁP TÌM KIẾM & HỢP NHẤT)
@@ -725,75 +790,160 @@ $$\text{Hybrid Search} = \text{Dense Vector Search (Semantic)} + \text{BM25 Sear
 | **BM25 Search** | Chuỗi từ khóa truy vấn | Tìm kiếm theo khớp chính xác từ khóa, ID, mã code | Danh sách tài liệu xếp theo điểm BM25 |
 | **RRF Scoring** | Các bảng xếp hạng kết quả riêng lẻ | Chuẩn hóa và hợp nhất dựa trên vị trí thứ tự | Một bảng xếp hạng kết quả cuối cùng đã được tối ưu |
 
+> [!TIP]
+> **Code thực hành Search Methods & Rank Fusion:** Đã được triển khai hoàn chỉnh tại [hybrid_search.py](file:///home/hoanh-tran/my%20project/Learn%20AI/rag-learning/src/retrieval/hybrid_search.py) (kết hợp Dense Vector, BM25 Lexical, RRF Ranking $k=60$ và Metadata Pre-filtering). Chạy thử nghiệm ngay:
+> ```bash
+> python3 rag-learning/src/retrieval/hybrid_search.py
+> # hoặc chạy kịch bản thực nghiệm:
+> python3 rag-learning/experiments/06_hybrid_search_test.py
+> ```
+
 ---
 
 ### 4. RERANKING VỚI CROSS-ENCODER
 
-#### a. Lý do cần Rerank
-- Sau bước Retrieval (3.1 - 3.2), hệ thống có thể thu về tập ứng viên khoảng 20 tài liệu (Top 20 Candidates).
-- Không nên nạp toàn bộ 20 tài liệu này vào LLM vì sẽ gây ra:
-  - Chi phí token tăng cao.
-  - Độ trễ (*latency*) phản hồi chậm.
-  - Hiện tượng loãng ngữ cảnh (*Context Dilution*) và làm giảm chất lượng câu trả lời của LLM.
+#### a. Tại sao bắt buộc cần Rerank trong RAG thực tế?
+
+Nhiều người mới tiếp cận RAG thường cho rằng: *"Chỉ cần Vector Search (hoặc Hybrid Search) lấy ra Top 10 - 20 đoạn văn bản rồi nạp hết vào Prompt cho LLM trả lời là xong"*. Trong thực tế môi trường Production, cách làm này dẫn đến những sai số nghiêm trọng vì các lý do sau:
+
+##### 1. Khác biệt cốt lõi về bản chất kiến trúc: Bi-Encoder vs Cross-Encoder
+
+```text
+               BI-ENCODER (Dense Vector Search)                 │               CROSS-ENCODER (Reranker)
+                                                                 │
+    [Query] ──► [Transformer] ──► Vector Q (384-dim)            │      [Query] ───┐
+                                      │ (Cosine Sim)            │                 ├──► [CLS] Query [SEP] Doc [SEP]
+    [Doc]   ──► [Transformer] ──► Vector D (384-dim)            │      [Doc]   ───┘                │
+                                                                 │                                  ▼
+    • Hai văn bản được mã hóa RIÊNG BIỆT (Không thấy nhau).     │                         [Transformer Layers]
+    • KHÔNG CÓ tương tác All-to-All Token Cross-Attention.      │                 (Cross-Attention giữa từng từ)
+    • Nén cả đoạn văn vào 1 vector duy nhất ──► MẤT MÁT NGỮ NGHĨA│                                  │
+    • Tốc độ: CỰC NHANH O(1) qua HNSW Index (quét hàng triệu doc)│                                  ▼
+                                                                 │                      Điểm Relevance Score [-10, 10]
+                                                                 │
+                                                                 │      • Đọc đồng thời Query và Doc cùng một lúc.
+                                                                 │      • Từng từ trong Query trực tiếp "soi" từng từ trong Doc.
+                                                                 │      • Độ chính xác ngữ nghĩa cực cao (Bắt đúng logic, phủ định).
+                                                                 │      • Tốc độ: Chậm hơn O(N) ──► Phù hợp chắt lọc Top 20-50 doc.
+```
+
+- **Bi-Encoder (Vector Search):**
+  - Câu hỏi $Q$ và tài liệu $D$ được vector hóa hoàn toàn độc lập: $v_q = \text{Encoder}(Q)$, $v_d = \text{Encoder}(D)$. Phép đo chỉ là tích vô hướng hoặc Cosine Similarity giữa hai vector cố định.
+  - Khi nén một đoạn văn 300 - 500 từ vào một vector 384 hoặc 768 chiều, rất nhiều chi tiết tinh tế, cấu trúc logic (nguyên nhân - kết quả, điều kiện ràng buộc, câu phủ định) bị san phẳng (*Information Bottleneck*).
+  - Do đó, Bi-Encoder rất dễ trả về các tài liệu **"có vẻ liên quan về chủ đề nhưng không trả lời được câu hỏi"** (False Positives).
+- **Cross-Encoder (Reranker):**
+  - Ghép nối chuỗi văn bản: `[CLS] Query [SEP] Document [SEP]` và đẩy qua các tầng Transformer.
+  - Tại mỗi tầng, **mỗi từ trong câu hỏi được trực tiếp tính attention với từng từ trong tài liệu (All-to-all token attention)**. Mô hình đọc hiểu được mối quan hệ logic, câu phủ định ("không được làm X"), và các điều kiện phức tạp. Độ chính xác (Precision) vượt trội hoàn toàn so với Bi-Encoder.
+
+##### 2. Hiện tượng "Lost in the Middle" của LLM (Liu et al., Stanford, 2023)
+- Các nghiên cứu thực nghiệm đã chứng minh: Khả năng ghi nhớ và chú ý của LLM tuân theo đường cong hình chữ **U (U-shaped performance curve)**.
+- LLM chú ý tốt nhất ở **đầu** và **cuối** của Prompt. Nếu chúng ta nạp 15 - 20 chunks vào context, các chunk quan trọng rơi vào vị trí số 7, 8, 9, 10 thường bị LLM "bỏ quên", dẫn đến câu trả lời thiếu ý hoặc ảo giác.
+- **Reranker giải quyết:** Tái sắp xếp và chắt lọc xuống Top 3 - Top 5 tài liệu chuẩn xác nhất, đưa thông tin trọng tâm lên ngay đầu context.
+
+##### 3. Hiện tượng Loãng Ngữ Cảnh (Context Dilution) & Ảo giác (Hallucination)
+- Càng nạp nhiều đoạn văn bản không trực tiếp trả lời câu hỏi, LLM càng dễ bị nhiễu (*Noise*). Những thông tin râu ria hoặc mâu thuẫn giữa các văn bản làm tăng mạnh xác suất suy luận sai và sinh ra ảo giác.
+
+##### 4. Tối ưu chi phí Token & Tốc độ phản hồi (Latency & Cost)
+- **20 chunks** $\times$ 400 tokens $\approx$ **8.000 tokens**. Chi phí token đầu vào tăng gấp 4 - 5 lần và thời gian chờ (Latency / Time to First Token) của LLM tăng đáng kể.
+- **Top 3 chunks sau Rerank** $\approx$ **1.200 tokens**, tiết kiệm hơn 80% chi phí xử lý và giúp LLM phản hồi nhanh gấp 2 - 3 lần.
 
 ---
 
-#### b. Mô hình Two-stage Pipeline
+#### b. Bảng so sánh Bi-Encoder vs Cross-Encoder
+
+| Tiêu chí | Bi-Encoder (Dense Vector Search) | Cross-Encoder (Reranker) |
+| :--- | :--- | :--- |
+| **Kiến trúc đầu vào** | Mã hóa độc lập $Q$ và $D$ thành 2 vector riêng | Ghép chung: `[CLS] + Q + [SEP] + D + [SEP]` |
+| **Cơ chế Attention** | Chỉ tự chú ý nội bộ trong từng câu (Self-attention riêng) | Chú ý chéo toàn diện giữa mọi từ ($Q \leftrightarrow D$ Cross-attention) |
+| **Độ chính xác (Precision)** | Trung bình - Khá (Dễ dính False Positive) | **Rất cao** (Bắt chuẩn ngữ cảnh, logic, phủ định) |
+| **Tốc độ tính toán** | **Siêu nhanh** ($< 5\text{ms}$ trên hàng triệu văn bản với HNSW) | Chậm hơn ($10 - 50\text{ms}$ cho 20 - 50 văn bản) |
+| **Lưu trữ trước (Pre-compute)** | **Có** (Có thể sinh vector và lưu trước vào Vector DB) | **Không** (Bắt buộc tính toán On-the-fly khi có Query) |
+| **Vai trò tối ưu trong RAG** | **Candidate Generation (Tối ưu Recall)**: Quét rộng | **Candidate Refinement (Tối ưu Precision)**: Lọc sâu |
+
+---
+
+#### c. Mô hình Two-Stage Retrieval Pipeline chuẩn công nghiệp
+
+Trong các hệ thống RAG quy mô lớn, kiến trúc chuẩn luôn là **Two-Stage Pipeline** để cân bằng hoàn hảo giữa Tốc độ (*Latency*) và Độ chính xác (*Accuracy*):
 
 ```text
 [User Query]
      │
      ▼
-[3.1 - 3.2: Retrieval Pipeline] ──► Thu được tập ứng viên rộng (Ví dụ: Top 20 Candidates)
+[GIAI ĐOẠN 1: FAST RETRIEVAL (Tối ưu Recall)]
+(Hybrid Search: Dense Vector + BM25 + RRF)
+     │  Quét trên hàng triệu tài liệu trong vài ms
+     ▼
+[Top 20 - 50 Chunks Ứng Viên Thô]
      │
      ▼
-[3.3: Cross-Encoder Reranker]   ──► Chắt lọc & sắp xếp lại (Ví dụ: Top 3 - 5 Chunks)
+[GIAI ĐOẠN 2: PRECISE RERANKING (Tối ưu Precision)]
+(Cross-Encoder Reranker: Chấm điểm tương quan sâu)
+     │  Tính toán cross-attention cho 20-50 cặp
+     ▼
+[Top 3 - 5 Chunks Tinh Túy Nhất]
      │
      ▼
-[3.4: Augmented Generation]     ──► Ghép Context + Prompt đưa vào LLM sinh câu trả lời
-     │
-     ▼
-[3.5: Post-RAG Guardrails]      ──► Rà soát an toàn, tính xác thực & trích dẫn
-     │
-     ▼
-[Final Verified Answer]
+[AUGMENTED GENERATION]
+(Nạp vào Prompt Context đưa cho LLM sinh câu trả lời)
 ```
 
-Cơ chế xử lý 2 giai đoạn (Two-stage Pipeline):
-
-$$\text{Query} \xrightarrow{\quad\text{Fast Retrieval (Ưu tiên Speed / Recall)}\quad} \text{Top 20} \xrightarrow{\quad\text{Cross-Encoder (Ưu tiên Precision)}\quad} \text{Top 3 - 5} \xrightarrow{\quad} \text{LLM}$$
-
----
-
-#### c. Cơ chế hoạt động của Cross-Encoder
-- **Đánh giá trực tiếp & đồng thời:** Đánh giá cặp `(Query, Document)` cùng lúc qua các lớp Transformer chú ý chéo (*cross-attention*), thay vì sinh embedding độc lập cho từng phần như Bi-Encoder.
-- **Độ chính xác vượt trội:** Cho độ tương quan ngữ nghĩa chính xác hơn hẳn Bi-Encoder, dù tốc độ tính toán chậm hơn.
-- **Phân công vai trò:**
-  - **Vector Search / Hybrid Search:** Đảm nhận khâu *Candidate Generation* (sinh tập ứng viên nhanh với Recall cao).
-  - **Cross-Encoder Reranker:** Đảm nhận khâu *Candidate Refinement* (tinh chỉnh, chọn lọc và sắp xếp lại với Precision cao).
+> [!TIP]
+> **Code thực hành Reranker:** Đã được triển khai hoàn chỉnh tại [reranker.py](file:///home/hoanh-tran/my%20project/Learn%20AI/rag-learning/src/retrieval/reranker.py) sử dụng mô hình Cross-Encoder `ms-marco-MiniLM-L-6-v2`. Chạy thử nghiệm ngay:
+> ```bash
+> python3 rag-learning/src/retrieval/reranker.py
+> # hoặc chạy kịch bản Two-Stage Retrieval hoàn chỉnh:
+> python3 rag-learning/experiments/07_rerank_test.py
+> ```
 
 ---
 
 ### 5. AUGMENTED GENERATION (CHỮ "G" TRONG RAG)
 
 #### a. Cơ chế hoạt động
-Sau khi chọn ra Top 3 - 5 ngữ cảnh chất lượng nhất từ bước Reranking, hệ thống ghép nối câu hỏi của người dùng, context vừa trích xuất và câu lệnh điều khiển (*System Instruction*) để LLM sinh câu trả lời có căn cứ thực tế (*grounded answer*).
+Sau khi chọn ra Top 3 - 5 ngữ cảnh chất lượng nhất từ bước Reranking, hệ thống thực hiện giai đoạn **Augmented Generation**:
+1. **Context Structuring:** Đóng gói các chunk ngữ cảnh kèm nhãn định danh `[Nguồn 1]`, `[Nguồn 2]` và metadata liên quan.
+2. **Strict Prompt Construction:** Ràng buộc LLM chỉ được phép trả lời dựa trên context được cung cấp, kiên quyết từ chối nếu context không chứa câu trả lời.
+3. **Citation Generation:** Yêu cầu LLM trích dẫn cụ thể từng nguồn tương ứng sau mỗi khẳng định để người dùng có thể đối chiếu chéo.
 
 ---
 
 #### b. Cấu trúc Prompt chuẩn hóa
 
-$$\text{Final Prompt} = \text{System Instruction} + \text{Retrieved Context} + \text{User Query}$$
+$$\text{Final Prompt} = \text{System Instruction} + \text{Retrieved Context (Numbered)} + \text{User Query}$$
 
 ```text
-System: Answer using only the provided context. If the answer cannot be found, say that the information is unavailable.
+[SYSTEM INSTRUCTION]
+Bạn là một trợ lý AI trung thực và chính xác.
+Nhiệm vụ: Trả lời câu hỏi CHỈ DỰA TRÊN các đoạn tài liệu tham khảo (Context) dưới đây.
+Nguyên tắc:
+1. Grounding: Tuyệt đối không tự suy diễn hoặc bịa đặt thông tin ngoài Context.
+2. Từ chối trung thực: Nếu Context không có thông tin, hãy trả lời rõ là tài liệu không đề cập.
+3. Trích dẫn: Ghi rõ nguồn [Nguồn 1], [Nguồn 2] tương ứng với tài liệu đã dùng.
 
-Context:
-- [Chunk 1: HNSW multi-layer skip list mechanics...]
-- [Chunk 2: HNSW beam search configuration...]
+[RETRIEVED CONTEXT]
+--- [Nguồn 1 | ID: chunk_01 | doc: "Chính sách WFH"] ---
+Nhân viên được làm việc từ xa tối đa 2 ngày/tuần sau khi đăng ký qua ERP...
 
-Question: How does HNSW vector search work?
+--- [Nguồn 2 | ID: chunk_02 | doc: "Trang thiết bị"] ---
+Công ty hỗ trợ 500.000 VNĐ/tháng chi phí internet cho nhân viên làm việc từ xa...
+
+==================================================
+[USER QUERY]
+Nhân viên được làm việc tại nhà mấy ngày và có hỗ trợ tiền mạng không?
 ```
+
+> [!TIP]
+> **Code thực hành Augmented Generation:** Đã được triển khai hoàn chỉnh tại:
+> - Định dạng Prompt chuẩn: [prompt.py](file:///home/hoanh-tran/my%20project/Learn%20AI/rag-learning/src/generation/prompt.py)
+> - Bộ sinh câu trả lời (Grounded Generator): [generator.py](file:///home/hoanh-tran/my%20project/Learn%20AI/rag-learning/src/generation/generator.py)
+> 
+> Chạy thử nghiệm ngay:
+> ```bash
+> python3 rag-learning/src/generation/generator.py
+> # hoặc chạy kịch bản thực nghiệm:
+> python3 rag-learning/experiments/08_generation_test.py
+> ```
 
 ---
 

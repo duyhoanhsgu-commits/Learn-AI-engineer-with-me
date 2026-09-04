@@ -18,15 +18,15 @@ Mô-đun học tập và thực hành xây dựng hệ thống **RAG (Retrieval-
 
 ## 📖 2. Trích dẫn bài học (Course Index)
 
-Chi tiết toàn bộ lý thuyết chuyên sâu, công thức toán và phân tích kỹ thuật được trình bày tại tài liệu [docs/ALL_RAG.md](docs/ALL_RAG.md):
+Chi tiết toàn bộ lý thuyết chuyên sâu, công thức toán và phân tích kỹ thuật được trình bày tại tài liệu [guide/ALL_RAG.md](guide/ALL_RAG.md):
 
 | STT | Chương | Trích dẫn tài liệu | Mô tả tóm tắt |
 | :--- | :--- | :--- | :--- |
-| **01** | **Foundation & Evolution** | [Chương 1](docs/ALL_RAG.md#chương-ii-foundation--evolution) | Bản chất Embedding, Dense Vector Space, Cosine Similarity và cơ chế Vector DB. |
-| **02** | **Offline Pipeline Ingestion** | [Chương 2](docs/ALL_RAG.md#chương-iii-offline-pipeline-ingestion--data-extraction) | Quy trình nạp dữ liệu: Parsing, OCR, chiến lược Chunking và Metadata Enrichment. |
-| **03** | **Online Pipeline Retrieval** | [Chương 3](docs/ALL_RAG.md#chương-iv-online-pipeline-retrieval) | Quy trình truy xuất: Query Transformation, Hybrid Search, Reranking và Context Selection. |
-| **04** | **Graph RAG & Advanced Architectures** | [Chương 4](docs/ALL_RAG.md#chương-v-graph-rag--advanced-architectures) | Các kiến trúc nâng cao: Graph RAG, Multi-query, HyDE, Self-RAG, Agentic RAG. |
-| **05** | **Evaluation & Operationalization** | [Chương 5](docs/ALL_RAG.md#chương-vi-evaluation--operationalization) | Đánh giá chất lượng RAG (Ragas, TruLens), tối ưu latency, chi phí và vận hành production. |
+| **01** | **Foundation & Evolution** | [Chương 1](guide/ALL_RAG.md#chương-ii-foundation--evolution) | Bản chất Embedding, Dense Vector Space, Cosine Similarity và cơ chế Vector DB. |
+| **02** | **Offline Pipeline Ingestion** | [Chương 2](guide/ALL_RAG.md#chương-iii-offline-pipeline-ingestion--data-extraction) | Quy trình nạp dữ liệu: Parsing, OCR, chiến lược Chunking và Metadata Enrichment. |
+| **03** | **Online Pipeline Retrieval** | [Chương 3](guide/ALL_RAG.md#chương-iv-online-pipeline-retrieval) | Quy trình truy xuất: Query Transformation, Hybrid Search, Reranking và Context Selection. |
+| **04** | **Graph RAG & Advanced Architectures** | [Chương 4](guide/ALL_RAG.md#chương-v-graph-rag--advanced-architectures) | Các kiến trúc nâng cao: Graph RAG, Multi-query, HyDE, Self-RAG, Agentic RAG. |
+| **05** | **Evaluation & Operationalization** | [Chương 5](guide/ALL_RAG.md#chương-vi-evaluation--operationalization) | Đánh giá chất lượng RAG (Ragas, TruLens), tối ưu latency, chi phí và vận hành production. |
 
 ---
 
@@ -34,11 +34,11 @@ Chi tiết toàn bộ lý thuyết chuyên sâu, công thức toán và phân t�
 
 ```
 rag-learning/
-├── docs/
-│   └── ALL_RAG.md          # Chi tiết nội dung bài học 5 chương
+├── guide/
+│   ├── ALL_RAG.md          # Chi tiết nội dung bài học 5 chương
+│   └── RAG Mind Map.png    # Sơ đồ tư duy RAG
 ├── src/                    # Mã nguồn triển khai pipeline RAG
 ├── experiments/            # Thử nghiệm chunking, embedding, retrieval
 ├── tests/                  # Kiểm thử unit test & benchmark
-├── .env.examples           # Mẫu cấu hình biến môi trường
-└── requirements.txt        # Thư viện phụ thuộc
+└── README.md               # Giới thiệu & mục lục RAG
 ```
