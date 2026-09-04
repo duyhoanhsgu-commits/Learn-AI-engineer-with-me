@@ -88,6 +88,7 @@ Hệ thống xử lý thông tin được chia thành 3 cấp độ tăng dần 
 
 - **Luồng xử lý:** $$\text{Input} \longrightarrow \text{Rule} \longrightarrow \text{Action} \longrightarrow \text{Output}$$
 - **Ví dụ:** Nếu `intent == "weather"` $\rightarrow$ gọi Weather API; nếu `intent == "booking"` $\rightarrow$ kích hoạt Booking Flow.
+- **Mã nguồn thực hành:** Xem code ví dụ đầy đủ tại [`agent/rule_base.py`](../agent/rule_base.py).
 - **Đặc điểm:** Tất định (*Deterministic*), phản hồi nhanh, chi phí tính toán tối thiểu, dễ viết kiểm thử.
 - **Hạn chế:** Chỉ xử lý được các trường hợp ngoại lệ mà kỹ sư đã dự đoán và cấu hình từ trước.
 
